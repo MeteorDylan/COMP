@@ -18,14 +18,27 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
-    [Header("MiniMap")] 
+    [Header("MiniMap")]
     public GameObject miniMap;
 
+    [Header("Player Sounds")]
+    public AudioSource jumpSound;
+    public AudioSource hitSound;
+
+    [Header("HealthBar")]
+    public HealthBarScreenSpaceController healthBar;
+
+    [Header("Player Abilities")]
+    [Range(0, 100)]
+    public int Health = 100;
+
+    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
+    // Update is called once per frame - once every 16.6666ms
 
     void Update()
     {
@@ -46,6 +59,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetButton("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            jumpSound.Play();
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -54,6 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
+            // toggle the MiniMap on/off
             miniMap.SetActive(!miniMap.activeInHierarchy);
         }
     }
@@ -64,5 +79,10 @@ public class PlayerBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
     }
 
+    public void TakeDamage(int damage) 
+    {
+        health -= damage;
+        healthBar.TakeDamage(damage);
+    }
    
 }

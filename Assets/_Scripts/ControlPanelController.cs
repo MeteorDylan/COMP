@@ -19,6 +19,7 @@ public class ControlPanelController : MonoBehaviour
 
     public Pauseable pausable;
 
+    // Start is called before the first frame update
     void Start()
     {
         pausable = FindObjectOfType<Pauseable>();
@@ -28,6 +29,7 @@ public class ControlPanelController : MonoBehaviour
         timer = 0.0f;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))

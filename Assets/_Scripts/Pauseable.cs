@@ -11,6 +11,7 @@ public class Pauseable : MonoBehaviour
     public List<NavMeshAgent> agents;
     public bool isGamePaused;
 
+    // Start is called before the first frame update
     void Start()
     {
         isGamePaused = false;

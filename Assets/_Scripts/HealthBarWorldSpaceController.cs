@@ -14,6 +14,7 @@ public class HealthBarWorldSpaceController : MonoBehaviour
 
     void LateUpdate()
     {
+        // billboard the healthBar
         transform.LookAt(transform.position + playerCamera.forward);
     }
 }

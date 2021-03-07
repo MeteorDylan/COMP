@@ -14,23 +14,17 @@ public class HealthBarScreenSpaceController : MonoBehaviour
 
     private Slider healthBarSlider;
 
+    // Start is called before the first frame update
     void Start()
     {
         healthBarSlider = GetComponent<Slider>();
         currentHealth = maximumHealth;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(10);
-        }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Reset();
-        }
     }
 
     public void TakeDamage(int damage)
